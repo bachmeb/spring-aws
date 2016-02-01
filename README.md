@@ -2,7 +2,10 @@
 
 Build routine to deploy a new webapp using Spring on AWS
 
-### [References](/docs/references.md)
+### References
+* https://spring.io/guides/gs/rest-service/
+* http://exponential.io/blog/2015/03/30/install-gradle-on-ubuntu-linux/
+* http://serverfault.com/questions/664643/how-can-i-upgrade-to-java-1-8-on-an-amazon-linux-server
 
 ##### Create a new vm
 https://aws.amazon.com/ec2/
@@ -89,7 +92,6 @@ https://aws.amazon.com/ec2/
 ##### Install JDK 1.8
     yum search openjdk
     yum install java-1.8.0-openjdk.x86_64
-
 
 ##### Create a user account for development
     useradd [your new account name]
@@ -181,4 +183,218 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
+```
+##### Search yum for available Gradle packages
+    yum search gradle
+    yum --enablerepo="*" list available | grep gradle
+
+##### Make a directory for Gradle
+    sudo mkdir -p /opt/packages/gradle && cd $_
+    pwd
+
+##### Download Gradle
+    sudo wget https://services.gradle.org/distributions/gradle-2.10-bin.zip
+    
+##### Unzip the Gradle package
+    sudo unzip gradle-2.10-bin.zip
+
+##### Create a symlink 
+    ln -s /opt/packages/gradle/gradle-2.10/ /opt/gradle
+
+##### Set GRADLE_HOME
+    export GRADLE_HOME="/opt/gradle"
+
+##### Set the Path
+    PATH="$PATH:$GRADLE_HOME/bin"
+
+##### See if Gradle is installed correctly
+    gradle -version
+
+##### Add GRADLE_HOME/bin to your bash profile script
+    nano ~/.bash_profile
+```bash
+# Gradle
+if [ -d "$HOME/opt/gradle" ]; then
+    export GRADLE_HOME="/opt/gradle"
+    PATH="$PATH:$GRADLE_HOME/bin"
+fi
+```
+
+##### Create a resource representation class
+    vim src/main/java/hello/Greeting.java
+    
+```java
+package hello;
+
+public class Greeting {
+
+    private final long id;
+    private final String content;
+
+    public Greeting(long id, String content) {
+        this.id = id;
+        this.content = content;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+}
+```
+##### Create a resource controller
+    vim src/main/java/hello/GreetingController.java
+```java
+package hello;
+
+import java.util.concurrent.atomic.AtomicLong;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class GreetingController {
+
+    private static final String template = "Hello, %s!";
+    private final AtomicLong counter = new AtomicLong();
+
+    @RequestMapping("/greeting")
+    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
+        return new Greeting(counter.incrementAndGet(),
+                            String.format(template, name));
+    }
+}
+```
+##### Make the application executable
+    vim src/main/java/hello/Application.java
+```java
+package hello;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+##### Run Gradle
+    gradle
+```
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-gra                                                           dle-plugin/1.3.2.RELEASE/spring-boot-gradle-plugin-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-too                                                           ls/1.3.2.RELEASE/spring-boot-tools-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-par                                                           ent/1.3.2.RELEASE/spring-boot-parent-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-dep                                                           endencies/1.3.2.RELEASE/spring-boot-dependencies-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/spring-framework-bom                                                           /4.2.4.RELEASE/spring-framework-bom-4.2.4.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/data/spring-data-rel                                                           easetrain/Gosling-SR2A/spring-data-releasetrain-Gosling-SR2A.pom
+Download https://repo1.maven.org/maven2/org/springframework/data/build/spring-da                                                           ta-build/1.7.3.RELEASE/spring-data-build-1.7.3.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/integration/spring-i                                                           ntegration-bom/4.2.4.RELEASE/spring-integration-bom-4.2.4.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/security/spring-secu                                                           rity-bom/4.0.3.RELEASE/spring-security-bom-4.0.3.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-loa                                                           der-tools/1.3.2.RELEASE/spring-boot-loader-tools-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/io/spring/gradle/dependency-management-p                                                           lugin/0.5.4.RELEASE/dependency-management-plugin-0.5.4.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/spring-core/4.2.4.RE                                                           LEASE/spring-core-4.2.4.RELEASE.pom
+Download https://repo1.maven.org/maven2/commons-logging/commons-logging/1.2/comm                                                           ons-logging-1.2.pom
+Download https://repo1.maven.org/maven2/org/apache/commons/commons-parent/34/com                                                           mons-parent-34.pom
+Download https://repo1.maven.org/maven2/org/apache/apache/13/apache-13.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-gra                                                           dle-plugin/1.3.2.RELEASE/spring-boot-gradle-plugin-1.3.2.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-loa                                                           der-tools/1.3.2.RELEASE/spring-boot-loader-tools-1.3.2.RELEASE.jar
+Download https://repo1.maven.org/maven2/io/spring/gradle/dependency-management-p                                                           lugin/0.5.4.RELEASE/dependency-management-plugin-0.5.4.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/springframework/spring-core/4.2.4.RE                                                           LEASE/spring-core-4.2.4.RELEASE.jar
+Download https://repo1.maven.org/maven2/commons-logging/commons-logging/1.2/comm                                                           ons-logging-1.2.jar
+:help
+
+Welcome to Gradle 2.10.
+
+To run a build, run gradle <task> ...
+
+To see a list of available tasks, run gradle tasks
+
+To see a list of command-line options, run gradle --help
+
+To see more detail about a task, run gradle help --task <task>
+
+BUILD SUCCESSFUL
+
+Total time: 12.12 secs
+```
+##### Install the JDK
+    sudo yum search openjdk
+    sudo yum install java-1.8.0-openjdk-devel.x86_64
+
+##### Check the Java compiler version
+    javac -version
+Should be:
+    javac 1.8.0_65    
+
+##### Build an executable JAR
+    gradle build
+```
+:compileJava
+:processResources UP-TO-DATE
+:classes
+:findMainClass
+:jar
+:bootRepackage
+:assemble
+:compileTestJava UP-TO-DATE
+:processTestResources UP-TO-DATE
+:testClasses UP-TO-DATE
+:test UP-TO-DATE
+:check UP-TO-DATE
+:build
+
+BUILD SUCCESSFUL
+
+Total time: 10.118 secs
+```
+##### Tell Linux to use the 1.8 Java executable
+    sudo /usr/sbin/alternatives --config java
+    
+##### Check the Java version
+    java -version
+Should be
+```
+openjdk version "1.8.0_65"
+OpenJDK Runtime Environment (build 1.8.0_65-b17)
+OpenJDK 64-Bit Server VM (build 25.65-b01, mixed mode)
+```
+
+##### Run the JAR file:
+    java -jar build/libs/gs-rest-service-0.1.0.jar
+
+##### Install lynx
+    sudo yum install lynx
+
+##### Open another console and connect to aws
+    ssh -i [pemfile.pem] ec2-user@[ec2 ip address]
+    
+##### Switch to your developer account
+    su [developer account]
+
+##### Go home
+    cd ~
+    
+##### Install lynx
+    sudo yum install lynx
+
+##### 
+##### 
+
+##### Test the service
+    lynx http://localhost:8080/greeting
+The response should be:
+```json
+{"id":1,"content":"Hello, World!"}
+```
+##### Provide a name query string parameter
+    lynx http://localhost:8080/greeting?name=User
+The reply should be 
+```json
+{"id":2,"content":"Hello, User!"}
 ```
