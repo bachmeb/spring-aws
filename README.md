@@ -132,7 +132,7 @@ build/
 .gradle/
 ```
 
-##### Initialize the directory
+##### Initialize the git repository
     cd ~/git/projectdirectory
     git init
 
@@ -156,7 +156,7 @@ build/
     yum search gradle
     yum --enablerepo="*" list available | grep gradle
 
-##### Make a directory for Gradle
+##### Make an installation directory for Gradle
     sudo mkdir -p /opt/packages/gradle && cd $_
     pwd
 
@@ -189,6 +189,7 @@ fi
 ```
 
 ##### Create a Gradle build file in the project root directory
+    cd ~/git/projectfolder
     vim build.gradle
     
 ```gradle
@@ -229,9 +230,7 @@ task wrapper(type: Wrapper) {
 ```
 
 ##### Make a subdirectory for Java class files
-    pwd
-    cd ~/git/projectfolder
-    mkdir -p src/main/java/hello
+    mkdir -p ~/git/projectfolder/src/main/java/hello
     
 ##### Create a resource representation class
     vim src/main/java/hello/Greeting.java
@@ -297,7 +296,7 @@ public class Application {
     }
 }
 ```
-##### Run Gradle
+##### Run Gradle from the same directory where build.gradle is saved
     cd ~/git/projectfolder
     gradle
 ```
@@ -347,7 +346,7 @@ Total time: 12.12 secs
 ##### See if the Java compiler is installed
     javac -version
 
-##### Install JDK version 1.8
+##### Install the OpenJDK Development Environment, version 1.8
     sudo yum search openjdk
     sudo yum install java-1.8.0-openjdk-devel.x86_64
 
@@ -397,9 +396,6 @@ OpenJDK 64-Bit Server VM (build 25.65-b01, mixed mode)
     
 ##### Switch to your developer account
     su [developer account]
-
-##### Go home
-    cd ~
     
 ##### Install lynx
     sudo yum install lynx
