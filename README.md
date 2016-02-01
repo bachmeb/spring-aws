@@ -395,13 +395,13 @@ The reply should be
 {"id":2,"content":"Hello, User!"}
 ```
 ##### Test the service from your local machine
-Open a web browser and go to http://[ec2 ip address]:8080/greeting
+    Open a web browser and go to http://[ec2 ip address]:8080/greeting
 The response should be:
 ```json
 {"id":3,"content":"Hello, World!"}
 ```
 ##### Provide a name query string parameter
-Open a web browser and go to http://[ec2 ip address]:8080/greeting?name=User
+    Open a web browser and go to http://[ec2 ip address]:8080/greeting?name=User
 The reply should be 
 ```json
 {"id":4,"content":"Hello, User!"}
