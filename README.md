@@ -71,28 +71,8 @@ https://aws.amazon.com/ec2/
 ##### Switch to root
     sudo su
 
-##### Stop Sendmail
-    /etc/init.d/sendmail stop
-
 ##### Update yum
     yum update
-
-##### Show all of the environment variables
-    printenv
-    declare
-
-##### Show the current JAVA_HOME
-    env | grep JAVA_HOME
-
-##### Check the Java version
-    java -version
-
-##### See if the Java compiler is installed
-    javac -version
-
-##### Install JDK 1.8
-    yum search openjdk
-    yum install java-1.8.0-openjdk.x86_64
 
 ##### Create a user account for development
     useradd [your new account name]
@@ -125,6 +105,33 @@ https://aws.amazon.com/ec2/
 ##### Make a project directory
     mkdir -p ~/git/projectdirecory
 
+##### Make a .gitignore file
+    nano .gitignore
+```
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# AWS key
+*.pem
+
+# Tomcat build.properties file
+build.properties
+
+# Gradle folders
+build/
+.gradle/
+```
+
 ##### Initialize the directory
     cd ~/git/projectdirectory
     git init
@@ -142,11 +149,46 @@ https://aws.amazon.com/ec2/
 ##### Fetch from the remote repository
     git fetch
 
-##### Make a subdirectory for Java class files
-    pwd
-    mkdir -p src/main/java/hello
+##### Pull from the remote directory
+    git pull origin master
 
-##### Create a Gradle build file
+##### Search yum for available Gradle packages
+    yum search gradle
+    yum --enablerepo="*" list available | grep gradle
+
+##### Make a directory for Gradle
+    sudo mkdir -p /opt/packages/gradle && cd $_
+    pwd
+
+##### Download Gradle
+    sudo wget https://services.gradle.org/distributions/gradle-2.10-bin.zip
+    
+##### Unzip the Gradle package
+    sudo unzip gradle-2.10-bin.zip
+
+##### Create a symlink 
+    ln -s /opt/packages/gradle/gradle-2.10/ /opt/gradle
+
+##### Set GRADLE_HOME
+    export GRADLE_HOME="/opt/gradle"
+
+##### Set the PATH variable
+    PATH="$PATH:$GRADLE_HOME/bin"
+
+##### See if Gradle is installed correctly
+    gradle -version
+
+##### Add GRADLE_HOME/bin to your bash profile script
+    nano ~/.bash_profile
+```bash
+# Gradle
+if [ -d "$HOME/opt/gradle" ]; then
+    export GRADLE_HOME="/opt/gradle"
+    PATH="$PATH:$GRADLE_HOME/bin"
+fi
+```
+
+##### Create a Gradle build file in the project root directory
     vim build.gradle
     
 ```gradle
@@ -185,42 +227,12 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 ```
-##### Search yum for available Gradle packages
-    yum search gradle
-    yum --enablerepo="*" list available | grep gradle
 
-##### Make a directory for Gradle
-    sudo mkdir -p /opt/packages/gradle && cd $_
+##### Make a subdirectory for Java class files
     pwd
-
-##### Download Gradle
-    sudo wget https://services.gradle.org/distributions/gradle-2.10-bin.zip
+    cd ~/git/projectfolder
+    mkdir -p src/main/java/hello
     
-##### Unzip the Gradle package
-    sudo unzip gradle-2.10-bin.zip
-
-##### Create a symlink 
-    ln -s /opt/packages/gradle/gradle-2.10/ /opt/gradle
-
-##### Set GRADLE_HOME
-    export GRADLE_HOME="/opt/gradle"
-
-##### Set the PATH variable
-    PATH="$PATH:$GRADLE_HOME/bin"
-
-##### See if Gradle is installed correctly
-    gradle -version
-
-##### Add GRADLE_HOME/bin to your bash profile script
-    nano ~/.bash_profile
-```bash
-# Gradle
-if [ -d "$HOME/opt/gradle" ]; then
-    export GRADLE_HOME="/opt/gradle"
-    PATH="$PATH:$GRADLE_HOME/bin"
-fi
-```
-
 ##### Create a resource representation class
     vim src/main/java/hello/Greeting.java
     
@@ -325,6 +337,16 @@ BUILD SUCCESSFUL
 
 Total time: 12.12 secs
 ```
+
+##### Show the current JAVA_HOME
+    env | grep JAVA_HOME
+
+##### Check the Java version
+    java -version
+
+##### See if the Java compiler is installed
+    javac -version
+
 ##### Install JDK version 1.8
     sudo yum search openjdk
     sudo yum install java-1.8.0-openjdk-devel.x86_64
@@ -406,3 +428,8 @@ The reply should be
 ```json
 {"id":4,"content":"Hello, User!"}
 ```
+##### Commit changes and push to the remote repository
+    git status
+    git add --all
+    git commit -m "complete spring deployment"
+    git push --set-upstream origin master
