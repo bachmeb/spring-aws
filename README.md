@@ -370,9 +370,6 @@ OpenJDK 64-Bit Server VM (build 25.65-b01, mixed mode)
 ##### Run the JAR file:
     java -jar build/libs/gs-rest-service-0.1.0.jar
 
-##### Install lynx
-    sudo yum install lynx
-
 ##### Open another console and connect to aws
     ssh -i [pemfile.pem] ec2-user@[ec2 ip address]
     
@@ -384,9 +381,6 @@ OpenJDK 64-Bit Server VM (build 25.65-b01, mixed mode)
     
 ##### Install lynx
     sudo yum install lynx
-
-##### 
-##### 
 
 ##### Test the service from AWS
     lynx http://localhost:8080/greeting
