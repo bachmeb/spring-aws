@@ -289,26 +289,26 @@ public class Application {
     cd ~/git/projectfolder
     gradle
 ```
-Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-gra                                                           dle-plugin/1.3.2.RELEASE/spring-boot-gradle-plugin-1.3.2.RELEASE.pom
-Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-too                                                           ls/1.3.2.RELEASE/spring-boot-tools-1.3.2.RELEASE.pom
-Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-par                                                           ent/1.3.2.RELEASE/spring-boot-parent-1.3.2.RELEASE.pom
-Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-dep                                                           endencies/1.3.2.RELEASE/spring-boot-dependencies-1.3.2.RELEASE.pom
-Download https://repo1.maven.org/maven2/org/springframework/spring-framework-bom                                                           /4.2.4.RELEASE/spring-framework-bom-4.2.4.RELEASE.pom
-Download https://repo1.maven.org/maven2/org/springframework/data/spring-data-rel                                                           easetrain/Gosling-SR2A/spring-data-releasetrain-Gosling-SR2A.pom
-Download https://repo1.maven.org/maven2/org/springframework/data/build/spring-da                                                           ta-build/1.7.3.RELEASE/spring-data-build-1.7.3.RELEASE.pom
-Download https://repo1.maven.org/maven2/org/springframework/integration/spring-i                                                           ntegration-bom/4.2.4.RELEASE/spring-integration-bom-4.2.4.RELEASE.pom
-Download https://repo1.maven.org/maven2/org/springframework/security/spring-secu                                                           rity-bom/4.0.3.RELEASE/spring-security-bom-4.0.3.RELEASE.pom
-Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-loa                                                           der-tools/1.3.2.RELEASE/spring-boot-loader-tools-1.3.2.RELEASE.pom
-Download https://repo1.maven.org/maven2/io/spring/gradle/dependency-management-p                                                           lugin/0.5.4.RELEASE/dependency-management-plugin-0.5.4.RELEASE.pom
-Download https://repo1.maven.org/maven2/org/springframework/spring-core/4.2.4.RE                                                           LEASE/spring-core-4.2.4.RELEASE.pom
-Download https://repo1.maven.org/maven2/commons-logging/commons-logging/1.2/comm                                                           ons-logging-1.2.pom
-Download https://repo1.maven.org/maven2/org/apache/commons/commons-parent/34/com                                                           mons-parent-34.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-gradle-plugin/1.3.2.RELEASE/spring-boot-gradle-plugin-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-tools/1.3.2.RELEASE/spring-boot-tools-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-parent/1.3.2.RELEASE/spring-boot-parent-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-dependencies/1.3.2.RELEASE/spring-boot-dependencies-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/spring-framework-bom/4.2.4.RELEASE/spring-framework-bom-4.2.4.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/data/spring-data-releasetrain/Gosling-SR2A/spring-data-releasetrain-Gosling-SR2A.pom
+Download https://repo1.maven.org/maven2/org/springframework/data/build/spring-data-build/1.7.3.RELEASE/spring-data-build-1.7.3.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/integration/spring-integration-bom/4.2.4.RELEASE/spring-integration-bom-4.2.4.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/security/spring-security-bom/4.0.3.RELEASE/spring-security-bom-4.0.3.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-loader-tools/1.3.2.RELEASE/spring-boot-loader-tools-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/io/spring/gradle/dependency-management-plugin/0.5.4.RELEASE/dependency-management-plugin-0.5.4.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/spring-core/4.2.4.RELEASE/spring-core-4.2.4.RELEASE.pom
+Download https://repo1.maven.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.pom
+Download https://repo1.maven.org/maven2/org/apache/commons/commons-parent/34/commons-parent-34.pom
 Download https://repo1.maven.org/maven2/org/apache/apache/13/apache-13.pom
-Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-gra                                                           dle-plugin/1.3.2.RELEASE/spring-boot-gradle-plugin-1.3.2.RELEASE.jar
-Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-loa                                                           der-tools/1.3.2.RELEASE/spring-boot-loader-tools-1.3.2.RELEASE.jar
-Download https://repo1.maven.org/maven2/io/spring/gradle/dependency-management-p                                                           lugin/0.5.4.RELEASE/dependency-management-plugin-0.5.4.RELEASE.jar
-Download https://repo1.maven.org/maven2/org/springframework/spring-core/4.2.4.RE                                                           LEASE/spring-core-4.2.4.RELEASE.jar
-Download https://repo1.maven.org/maven2/commons-logging/commons-logging/1.2/comm                                                           ons-logging-1.2.jar
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-gradle-plugin/1.3.2.RELEASE/spring-boot-gradle-plugin-1.3.2.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-loader-tools/1.3.2.RELEASE/spring-boot-loader-tools-1.3.2.RELEASE.jar
+Download https://repo1.maven.org/maven2/io/spring/gradle/dependency-management-plugin/0.5.4.RELEASE/dependency-management-plugin-0.5.4.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/springframework/spring-core/4.2.4.RELEASE/spring-core-4.2.4.RELEASE.jar
+Download https://repo1.maven.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar
 :help
 
 Welcome to Gradle 2.10.
@@ -398,11 +398,11 @@ The reply should be
 Open a web browser and go to http://[ec2 ip address]:8080/greeting
 The response should be:
 ```json
-{"id":1,"content":"Hello, World!"}
+{"id":3,"content":"Hello, World!"}
 ```
 ##### Provide a name query string parameter
 Open a web browser and go to http://[ec2 ip address]:8080/greeting?name=User
 The reply should be 
 ```json
-{"id":2,"content":"Hello, User!"}
+{"id":4,"content":"Hello, User!"}
 ```
