@@ -5,6 +5,7 @@ Build routine to deploy a new webapp using Spring on AWS
 ### References
 * https://spring.io/guides/gs/rest-service/
 * http://exponential.io/blog/2015/03/30/install-gradle-on-ubuntu-linux/
+* http://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/opt.html
 * http://serverfault.com/questions/664643/how-can-i-upgrade-to-java-1-8-on-an-amazon-linux-server
 
 ##### Create a new vm
@@ -204,7 +205,7 @@ task wrapper(type: Wrapper) {
 ##### Set GRADLE_HOME
     export GRADLE_HOME="/opt/gradle"
 
-##### Set the Path
+##### Set the PATH variable
     PATH="$PATH:$GRADLE_HOME/bin"
 
 ##### See if Gradle is installed correctly
@@ -285,6 +286,7 @@ public class Application {
 }
 ```
 ##### Run Gradle
+    cd ~/git/projectfolder
     gradle
 ```
 Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-gra                                                           dle-plugin/1.3.2.RELEASE/spring-boot-gradle-plugin-1.3.2.RELEASE.pom
@@ -323,7 +325,7 @@ BUILD SUCCESSFUL
 
 Total time: 12.12 secs
 ```
-##### Install the JDK
+##### Install JDK version 1.8
     sudo yum search openjdk
     sudo yum install java-1.8.0-openjdk-devel.x86_64
 
@@ -353,7 +355,7 @@ BUILD SUCCESSFUL
 
 Total time: 10.118 secs
 ```
-##### Tell Linux to use the 1.8 Java executable
+##### Tell Linux to use the Java interpreter in the JDK 1.8 
     sudo /usr/sbin/alternatives --config java
     
 ##### Check the Java version
@@ -386,7 +388,7 @@ OpenJDK 64-Bit Server VM (build 25.65-b01, mixed mode)
 ##### 
 ##### 
 
-##### Test the service
+##### Test the service from AWS
     lynx http://localhost:8080/greeting
 The response should be:
 ```json
@@ -394,6 +396,18 @@ The response should be:
 ```
 ##### Provide a name query string parameter
     lynx http://localhost:8080/greeting?name=User
+The reply should be 
+```json
+{"id":2,"content":"Hello, User!"}
+```
+##### Test the service from your local machine
+Open a web browser and go to http://[ec2 ip address]:8080/greeting
+The response should be:
+```json
+{"id":1,"content":"Hello, World!"}
+```
+##### Provide a name query string parameter
+Open a web browser and go to http://[ec2 ip address]:8080/greeting?name=User
 The reply should be 
 ```json
 {"id":2,"content":"Hello, User!"}
