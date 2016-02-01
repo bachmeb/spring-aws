@@ -142,3 +142,43 @@ https://aws.amazon.com/ec2/
 ##### Make a subdirectory for Java class files
     pwd
     mkdir -p src/main/java/hello
+
+##### Create a Gradle build file
+    vim build.gradle
+    
+```gradle
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'gs-rest-service'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile("junit:junit")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+```
