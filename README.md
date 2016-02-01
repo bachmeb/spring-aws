@@ -85,3 +85,60 @@ https://aws.amazon.com/ec2/
 
 ##### See if the Java compiler is installed
     javac -version
+
+##### Install JDK 1.8
+    yum search openjdk
+    yum install java-1.8.0-openjdk.x86_64
+
+
+##### Create a user account for development
+    useradd [your new account name]
+    
+##### Set the password for your development account
+    passwd [your new account name]
+
+##### Edit sudoers file
+    vim /etc/sudoers
+
+##### Add development account to sudoers file
+    ## ALLOW {MYACCOUNT} TO SUDO
+    [your new account name] ALL=(ALL) ALL
+
+##### Switch to development user
+    su [your new account name]
+    
+##### Ask who am I?
+    whoami
+    
+##### Check the value of the home directory environment variable
+    echo $HOME
+
+##### Go home
+    cd $HOME
+    
+##### Install git
+    sudo yum install git
+    
+##### Make a project directory
+    mkdir -p ~/git/projectdirecory
+
+##### Initialize the directory
+    cd ~/git/projectdirectory
+    git init
+
+##### Make a remote repository
+    http://github.com
+    
+##### Add the remote repository
+    git add remote origin https://github.com/[username]/[reponame].git
+
+##### Configure git
+    git config user.name [username]
+    git config user.email [your email address]
+    
+##### Fetch from the remote repository
+    git fetch
+
+##### Make a subdirectory for Java class files
+    pwd
+    mkdir -p src/main/java/hello
