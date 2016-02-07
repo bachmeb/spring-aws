@@ -11,6 +11,7 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+<<<<<<< HEAD
 # AWS 
 *.pem
 
@@ -21,3 +22,11 @@ build.properties
 build/
 .gradle/
 
+=======
+# AWS key
+*.pem
+
+# Gradle folders
+build/
+.gradle/
+>>>>>>> f64ec7d181c257c5f4467c8d8be0dcc775485adc

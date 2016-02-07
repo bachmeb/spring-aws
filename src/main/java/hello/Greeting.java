@@ -18,4 +18,7 @@ public class Greeting {
         return content;
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> f64ec7d181c257c5f4467c8d8be0dcc775485adc

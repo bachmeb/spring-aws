@@ -32,4 +32,7 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> f64ec7d181c257c5f4467c8d8be0dcc775485adc
