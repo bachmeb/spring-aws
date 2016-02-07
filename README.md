@@ -167,7 +167,7 @@ OpenJDK Runtime Environment (amzn-2.6.2.2.63.amzn1-x86_64 u91-b00)
 OpenJDK 64-Bit Server VM (build 24.91-b01, mixed mode)
 ```
 
-##### Tell Linux to use the Java interpreter in the JDK 1.8 
+##### Tell Linux to use the JDK 1.8 Java interpreter
     sudo /usr/sbin/alternatives --config java
 
 ##### Check the Java version
