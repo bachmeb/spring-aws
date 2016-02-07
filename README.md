@@ -136,7 +136,10 @@ https://aws.amazon.com/ec2/
 	whereis java
 
 ##### Check the Java version
-	java -version
+*As of Feb 2016, the standard Java version installed on Amazon Linux AMI is 1.7*  
+```
+java -version
+```
 
 ##### See if the Java compiler is installed
 	whereis javac
@@ -156,11 +159,11 @@ javac 1.8.0_65
 
 ##### Check the Java version
     java -version
-Should be
+Should still be 1.7
 ```
-openjdk version "1.8.0_65"
-OpenJDK Runtime Environment (build 1.8.0_65-b17)
-OpenJDK 64-Bit Server VM (build 25.65-b01, mixed mode)
+java version "1.7.0_91"
+OpenJDK Runtime Environment (amzn-2.6.2.2.63.amzn1-x86_64 u91-b00)
+OpenJDK 64-Bit Server VM (build 24.91-b01, mixed mode)
 ```
 
 ##### Tell Linux to use the Java interpreter in the JDK 1.8 
