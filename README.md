@@ -151,15 +151,16 @@ java -version
 	sudo yum install java-1.8.0-openjdk-devel
 
 ##### Check the Java compiler version
-	javac -version
-Should be
+*Should be javac 1.8.0_65*
 ```
-javac 1.8.0_65
+javac -version
 ```
 
 ##### Check the Java version
-    java -version
-Should still be 1.7
+*Should still be java version 1.7.0_91*  
+```
+java -version
+```
 ```
 java version "1.7.0_91"
 OpenJDK Runtime Environment (amzn-2.6.2.2.63.amzn1-x86_64 u91-b00)
@@ -168,6 +169,17 @@ OpenJDK 64-Bit Server VM (build 24.91-b01, mixed mode)
 
 ##### Tell Linux to use the Java interpreter in the JDK 1.8 
     sudo /usr/sbin/alternatives --config java
+
+##### Check the Java version
+*Should now be 1.8*  
+```
+java -version
+```
+```
+openjdk version "1.8.0_65"
+OpenJDK Runtime Environment (build 1.8.0_65-b17)
+OpenJDK 64-Bit Server VM (build 25.65-b01, mixed mode)
+```
 
 ##### Echo the $JAVA_HOME environment variable
 	echo $JAVA_HOME
