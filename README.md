@@ -140,19 +140,34 @@ https://aws.amazon.com/ec2/
 
 ##### See if the Java compiler is installed
 	whereis javac
-	javac -version
 
 ##### Search yum for openjdk
 	yum search openjdk
-	
+
 ##### Install the Open JDK version 1.8
 	sudo yum install java-1.8.0-openjdk-devel
 
 ##### Check the Java compiler version
 	javac -version
+Should be
+```
+javac 1.8.0_65
+```
 
-##### Tell Linux to use the Java interpreter in the JDK 1.7
-	sudo alternatives --config java
+##### Check the Java version
+    java -version
+Should be
+```
+openjdk version "1.8.0_65"
+OpenJDK Runtime Environment (build 1.8.0_65-b17)
+OpenJDK 64-Bit Server VM (build 25.65-b01, mixed mode)
+```
+
+##### Tell Linux to use the Java interpreter in the JDK 1.8 
+    sudo /usr/sbin/alternatives --config java
+
+##### Echo the $JAVA_HOME environment variable
+	echo $JAVA_HOME
 
 ##### Read the symlinks in /usr/lib/jvm/
 	ls -l /usr/lib/jvm/
@@ -169,15 +184,12 @@ https://aws.amazon.com/ec2/
 ##### Confirm that java-1.8.0-openjdk-1.8.0.65-2.b17.7.amzn1.x86_64 is the installation directory for Java SDK 1.8
 	ls -l /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.65-2.b17.7.amzn1.x86_64
 
-##### Echo the $JAVA_HOME environment variable
-	echo $JAVA_HOME
-
 ##### Set the JAVA_HOME environment variable to the Open JDK directory
 	export JAVA_HOME='/usr/lib/jvm/java'
 
 ##### Echo the $JAVA_HOME environment variable
 	echo $JAVA_HOME
-	
+
 ##### Install git
 	sudo yum install git
 	
@@ -526,17 +538,6 @@ BUILD SUCCESSFUL
 Total time: 18.515 secs
 
 This build could be faster, please consider using the Gradle Daemon: https://docs.gradle.org/2.10/userguide/gradle_daemon.html
-```
-##### Tell Linux to use the Java interpreter in the JDK 1.8 
-    sudo /usr/sbin/alternatives --config java
-    
-##### Check the Java version
-    java -version
-Should be
-```
-openjdk version "1.8.0_65"
-OpenJDK Runtime Environment (build 1.8.0_65-b17)
-OpenJDK 64-Bit Server VM (build 25.65-b01, mixed mode)
 ```
 
 ##### Run the JAR file:
