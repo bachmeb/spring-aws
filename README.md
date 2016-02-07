@@ -193,17 +193,17 @@ OpenJDK 64-Bit Server VM (build 25.65-b01, mixed mode)
 ##### Confirm that /etc/alternatives/java_sdk points to /usr/lib/jvm/java-1.8.0-openjdk.x86_64
 	ls -l /etc/alternatives/java_sdk
 
-##### Confirm that /usr/lib/jvm/java-1.8.0-openjdk.x86_64 points to java-1.8.0-openjdk-1.8.0.65-2.b17.7.amzn1.x86_64
+##### Confirm that /usr/lib/jvm/java-1.8.0-openjdk.x86_64 is the installation directory for Java SDK 1.8
 	ls -l /usr/lib/jvm/java-1.8.0-openjdk.x86_64
 
-##### Confirm that java-1.8.0-openjdk-1.8.0.65-2.b17.7.amzn1.x86_64 is the installation directory for Java SDK 1.8
-	ls -l /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.65-2.b17.7.amzn1.x86_64
-
-##### Set the JAVA_HOME environment variable to the Open JDK directory
+##### Set the JAVA_HOME environment variable to point to the JDK 1.8 directory
 	export JAVA_HOME='/usr/lib/jvm/java'
 
 ##### Echo the $JAVA_HOME environment variable
 	echo $JAVA_HOME
+
+##### List the contents of the $JAVA_HOME/ directory
+	ls -l $JAVA_HOME/
 
 ##### Install git
 	sudo yum install git
@@ -212,8 +212,8 @@ OpenJDK 64-Bit Server VM (build 25.65-b01, mixed mode)
 	mkdir -p ~/git/sp-aws
 
 ##### Initialize project repository
-    cd ~/git/sp-aws
-    git init
+	cd ~/git/sp-aws
+	git init
     
 ##### Make a .gitignore file
 	nano .gitignore
