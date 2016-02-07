@@ -90,9 +90,10 @@ https://aws.amazon.com/ec2/
 
 ##### Edit sudoers file
 	vim /etc/sudoers
+	:$
 
 ##### Add development account to sudoers file
-	## ALLOW {MYACCOUNT} TO SUDO
+	## ALLOW ME TO SUDO
 	[your new account name] ALL=(ALL) ALL
 
 ##### Switch to development user
@@ -105,7 +106,7 @@ https://aws.amazon.com/ec2/
 	echo $HOME
 
 ##### Go home
-	cd $HOME
+	cd ~
 
 ##### Check the Linux distro version
 	cat /proc/version
@@ -124,15 +125,68 @@ https://aws.amazon.com/ec2/
 
 ##### Show all of the environment variables
 	declare
-    
+
+##### Look for JAVA in the list of environmental variables
+	env | grep JAVA
+
+##### Echo the current JAVA_HOME
+	echo $JAVA_HOME
+
+##### Ask where is Java?
+	whereis java
+
+##### Check the Java version
+	java -version
+
+##### See if the Java compiler is installed
+	whereis javac
+	javac -version
+
+##### Search yum for openjdk
+	yum search openjdk
+	
+##### Install the Open JDK version 1.7
+	sudo yum install java-1.7.0-openjdk-devel
+
+##### Check the Java compiler version
+	javac -version
+
+##### Tell Linux to use the Java interpreter in the JDK 1.7
+	sudo /usr/sbin/alternatives --config java
+
+##### Read the symlinks in /usr/lib/jvm/
+	ls -l /usr/lib/jvm/
+
+##### Confirm that /usr/lib/jvm/java points to etc/alternatives/java_sdk
+	ls -l /usr/lib/jvm/java
+
+##### Confirm that /etc/alternatives/java_sdk points to /usr/lib/jvm/java-1.7.0-openjdk.x86_64
+	ls -l /etc/alternatives/java_sdk
+
+##### Confirm that /usr/lib/jvm/java-1.7.0-openjdk.x86_64 points to /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64
+	ls -l /usr/lib/jvm/java-1.7.0-openjdk.x86_64
+
+##### Confirm that /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64 is the installation directory for Java SDK 1.7
+	ls -l /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64
+
+##### Echo the $JAVA_HOME environment variable
+	echo $JAVA_HOME
+
+##### Set the JAVA_HOME environment variable to the Open JDK directory
+	export JAVA_HOME='/usr/lib/jvm/java'
+
+##### Echo the $JAVA_HOME environment variable
+	echo $JAVA_HOME
+	
 ##### Install git
     sudo yum install git
-    
-##### Make a project directory
-    mkdir -p ~/git/projectdirecory
+	
+##### Create a project folder
+    mkdir -p ~/git/sp-aws
 
 ##### Make a .gitignore file
-    nano .gitignore
+	cd git/sp-aws
+	nano .gitignore
 ```
 *.class
 
@@ -147,40 +201,40 @@ https://aws.amazon.com/ec2/
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# AWS key
+# AWS 
 *.pem
 
-# Tomcat build.properties file
+# Tomcat 
 build.properties
 
-# Gradle folders
+# Ant
 build/
-.gradle/
+dist/
 ```
-
-##### Initialize the git repository
-    cd ~/git/projectdirectory
+##### Initialize project repository
     git init
 
-##### Make a remote repository
-    http://github.com
-    
-##### Add the remote repository
-    git add remote origin https://github.com/[username]/[reponame].git
+##### Create remote repository
+    http://github.com/
 
-##### Configure git
-    git config user.name [username]
-    git config user.email [your email address]
-    
-##### Fetch from the remote repository
-    git fetch
+##### Configure repository
+    git config user.name {username}
+    git config user.email {emailaddress@example.com}
 
-##### Pull from the remote directory
+##### Add remote origin to local repository
+    git remote add origin http://github.com/{username}/{projectname}.git
+
+##### Pull from remote
     git pull origin master
+
+##### Check status
+    git status
+    
+##### Push to remote
+    git push --set-upstream origin master
 
 ##### Search yum for available Gradle packages
     yum search gradle
-    yum --enablerepo="*" list available | grep gradle
 
 ##### Make an installation directory for Gradle
     sudo mkdir -p /opt/packages/gradle && cd $_
@@ -215,7 +269,7 @@ fi
 ```
 
 ##### Create a Gradle build file in the project root directory
-    cd ~/git/projectfolder
+    cd ~/git/sp-aws
     vim build.gradle
     
 ```gradle
@@ -256,10 +310,10 @@ task wrapper(type: Wrapper) {
 ```
 
 ##### Make a subdirectory for Java class files
-    mkdir -p ~/git/projectfolder/src/main/java/hello
+    mkdir -p ~/git/sp-aws/src/main/java/hello
     
 ##### Create a resource representation class
-    vim src/main/java/hello/Greeting.java
+    vim  ~/git/sp-aws/src/main/java/hello/Greeting.java
     
 ```java
 package hello;
@@ -284,7 +338,7 @@ public class Greeting {
 }
 ```
 ##### Create a resource controller
-    vim src/main/java/hello/GreetingController.java
+    vim  ~/git/sp-aws/src/main/java/hello/GreetingController.java
 ```java
 package hello;
 
@@ -307,7 +361,7 @@ public class GreetingController {
 }
 ```
 ##### Make the application executable
-    vim src/main/java/hello/Application.java
+    vim  ~/git/sp-aws/src/main/java/hello/Application.java
 ```java
 package hello;
 
@@ -323,7 +377,7 @@ public class Application {
 }
 ```
 ##### Run Gradle from the same directory where build.gradle is saved
-    cd ~/git/projectfolder
+    cd ~/git/sp-aws
     gradle
 ```
 Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-gradle-plugin/1.3.2.RELEASE/spring-boot-gradle-plugin-1.3.2.RELEASE.pom
@@ -362,24 +416,6 @@ BUILD SUCCESSFUL
 
 Total time: 12.12 secs
 ```
-
-##### Show the current JAVA_HOME
-    env | grep JAVA_HOME
-
-##### Check the Java version
-    java -version
-
-##### See if the Java compiler is installed
-    javac -version
-
-##### Install the OpenJDK Development Environment, version 1.8
-    sudo yum search openjdk
-    sudo yum install java-1.8.0-openjdk-devel.x86_64
-
-##### Check the Java compiler version
-    javac -version
-Should be:
-    javac 1.8.0_65    
 
 ##### Build an executable JAR
     gradle build
@@ -421,7 +457,7 @@ OpenJDK 64-Bit Server VM (build 25.65-b01, mixed mode)
     ssh -i [pemfile.pem] ec2-user@[ec2 ip address]
     
 ##### Switch to your developer account
-    su [developer account]
+    sudo su [developer account]
     
 ##### Install lynx
     sudo yum install lynx
