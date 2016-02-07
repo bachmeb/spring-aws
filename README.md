@@ -145,14 +145,14 @@ https://aws.amazon.com/ec2/
 ##### Search yum for openjdk
 	yum search openjdk
 	
-##### Install the Open JDK version 1.7
-	sudo yum install java-1.7.0-openjdk-devel
+##### Install the Open JDK version 1.8
+	sudo yum install java-1.8.0-openjdk-devel
 
 ##### Check the Java compiler version
 	javac -version
 
 ##### Tell Linux to use the Java interpreter in the JDK 1.7
-	sudo /usr/sbin/alternatives --config java
+	sudo alternatives --config java
 
 ##### Read the symlinks in /usr/lib/jvm/
 	ls -l /usr/lib/jvm/
@@ -160,14 +160,14 @@ https://aws.amazon.com/ec2/
 ##### Confirm that /usr/lib/jvm/java points to etc/alternatives/java_sdk
 	ls -l /usr/lib/jvm/java
 
-##### Confirm that /etc/alternatives/java_sdk points to /usr/lib/jvm/java-1.7.0-openjdk.x86_64
+##### Confirm that /etc/alternatives/java_sdk points to /usr/lib/jvm/java-1.8.0-openjdk.x86_64
 	ls -l /etc/alternatives/java_sdk
 
-##### Confirm that /usr/lib/jvm/java-1.7.0-openjdk.x86_64 points to /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64
-	ls -l /usr/lib/jvm/java-1.7.0-openjdk.x86_64
+##### Confirm that /usr/lib/jvm/java-1.8.0-openjdk.x86_64 points to java-1.8.0-openjdk-1.8.0.65-2.b17.7.amzn1.x86_64
+	ls -l /usr/lib/jvm/java-1.8.0-openjdk.x86_64
 
-##### Confirm that /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64 is the installation directory for Java SDK 1.7
-	ls -l /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64
+##### Confirm that java-1.8.0-openjdk-1.8.0.65-2.b17.7.amzn1.x86_64 is the installation directory for Java SDK 1.8
+	ls -l /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.65-2.b17.7.amzn1.x86_64
 
 ##### Echo the $JAVA_HOME environment variable
 	echo $JAVA_HOME
@@ -179,13 +179,16 @@ https://aws.amazon.com/ec2/
 	echo $JAVA_HOME
 	
 ##### Install git
-    sudo yum install git
+	sudo yum install git
 	
 ##### Create a project folder
-    mkdir -p ~/git/sp-aws
+	mkdir -p ~/git/sp-aws
 
+##### Initialize project repository
+    cd ~/git/sp-aws
+    git init
+    
 ##### Make a .gitignore file
-	cd git/sp-aws
 	nano .gitignore
 ```
 *.class
@@ -207,12 +210,10 @@ hs_err_pid*
 # Tomcat 
 build.properties
 
-# Ant
+# Gradle
 build/
-dist/
+.gradle/
 ```
-##### Initialize project repository
-    git init
 
 ##### Create remote repository
     http://github.com/
@@ -229,6 +230,12 @@ dist/
 
 ##### Check status
     git status
+
+##### Add files to the git index
+	git add --all
+
+##### Commit files
+	git commit -m "write your message"
     
 ##### Push to remote
     git push --set-upstream origin master
@@ -240,14 +247,15 @@ dist/
     sudo mkdir -p /opt/packages/gradle && cd $_
     pwd
 
-##### Download Gradle
+##### Download Gradle 2.10
     sudo wget https://services.gradle.org/distributions/gradle-2.10-bin.zip
     
 ##### Unzip the Gradle package
     sudo unzip gradle-2.10-bin.zip
+    ls
 
 ##### Create a symlink 
-    ln -s /opt/packages/gradle/gradle-2.10/ /opt/gradle
+    sudo ln -s /opt/packages/gradle/gradle-2.10/ /opt/gradle
 
 ##### Set GRADLE_HOME
     export GRADLE_HOME="/opt/gradle"
@@ -271,7 +279,6 @@ fi
 ##### Create a Gradle build file in the project root directory
     cd ~/git/sp-aws
     vim build.gradle
-    
 ```gradle
 buildscript {
     repositories {
@@ -420,7 +427,87 @@ Total time: 12.12 secs
 ##### Build an executable JAR
     gradle build
 ```
+
 :compileJava
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-parent/1.3.2.RELEASE/spring-boot-starter-parent-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-web/1.3.2.RELEASE/spring-boot-starter-web-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starters/1.3.2.RELEASE/spring-boot-starters-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter/1.3.2.RELEASE/spring-boot-starter-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-tomcat/1.3.2.RELEASE/spring-boot-starter-tomcat-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-validation/1.3.2.RELEASE/spring-boot-starter-validation-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.6.5/jackson-databind-2.6.5.pom
+Download https://repo1.maven.org/maven2/com/fasterxml/jackson/jackson-parent/2.6.2/jackson-parent-2.6.2.pom
+Download https://repo1.maven.org/maven2/com/fasterxml/oss-parent/24/oss-parent-24.pom
+Download https://repo1.maven.org/maven2/org/springframework/spring-web/4.2.4.RELEASE/spring-web-4.2.4.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/spring-webmvc/4.2.4.RELEASE/spring-webmvc-4.2.4.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot/1.3.2.RELEASE/spring-boot-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-autoconfigure/1.3.2.RELEASE/spring-boot-autoconfigure-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-logging/1.3.2.RELEASE/spring-boot-starter-logging-1.3.2.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/yaml/snakeyaml/1.16/snakeyaml-1.16.pom
+Download https://repo1.maven.org/maven2/org/apache/tomcat/embed/tomcat-embed-core/8.0.30/tomcat-embed-core-8.0.30.pom
+Download https://repo1.maven.org/maven2/org/apache/tomcat/embed/tomcat-embed-el/8.0.30/tomcat-embed-el-8.0.30.pom
+Download https://repo1.maven.org/maven2/org/apache/tomcat/embed/tomcat-embed-logging-juli/8.0.30/tomcat-embed-logging-juli-8.0.30.pom
+Download https://repo1.maven.org/maven2/org/apache/tomcat/embed/tomcat-embed-websocket/8.0.30/tomcat-embed-websocket-8.0.30.pom
+Download https://repo1.maven.org/maven2/org/hibernate/hibernate-validator/5.2.2.Final/hibernate-validator-5.2.2.Final.pom
+Download https://repo1.maven.org/maven2/org/hibernate/hibernate-validator-parent/5.2.2.Final/hibernate-validator-parent-5.2.2.Final.pom
+Download https://repo1.maven.org/maven2/org/jboss/arquillian/arquillian-bom/1.1.9.Final/arquillian-bom-1.1.9.Final.pom
+Download https://repo1.maven.org/maven2/org/jboss/shrinkwrap/shrinkwrap-bom/1.2.2/shrinkwrap-bom-1.2.2.pom
+Download https://repo1.maven.org/maven2/org/jboss/shrinkwrap/resolver/shrinkwrap-resolver-bom/2.1.1/shrinkwrap-resolver-bom-2.1.1.pom
+Download https://repo1.maven.org/maven2/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-bom/2.0.0-alpha-7/shrinkwrap-descriptors-bom-2.0.0-alpha-7.pom
+Download https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.6.5/jackson-annotations-2.6.5.pom
+Download https://repo1.maven.org/maven2/com/fasterxml/jackson/jackson-parent/2.6.1/jackson-parent-2.6.1.pom
+Download https://repo1.maven.org/maven2/com/fasterxml/oss-parent/23/oss-parent-23.pom
+Download https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.6.5/jackson-core-2.6.5.pom
+Download https://repo1.maven.org/maven2/org/springframework/spring-aop/4.2.4.RELEASE/spring-aop-4.2.4.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/spring-beans/4.2.4.RELEASE/spring-beans-4.2.4.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/spring-context/4.2.4.RELEASE/spring-context-4.2.4.RELEASE.pom
+Download https://repo1.maven.org/maven2/org/springframework/spring-expression/4.2.4.RELEASE/spring-expression-4.2.4.RELEASE.pom
+Download https://repo1.maven.org/maven2/ch/qos/logback/logback-classic/1.1.3/logback-classic-1.1.3.pom
+Download https://repo1.maven.org/maven2/ch/qos/logback/logback-parent/1.1.3/logback-parent-1.1.3.pom
+Download https://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/1.7.13/jcl-over-slf4j-1.7.13.pom
+Download https://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.7.13/slf4j-parent-1.7.13.pom
+Download https://repo1.maven.org/maven2/org/slf4j/jul-to-slf4j/1.7.13/jul-to-slf4j-1.7.13.pom
+Download https://repo1.maven.org/maven2/org/slf4j/log4j-over-slf4j/1.7.13/log4j-over-slf4j-1.7.13.pom
+Download https://repo1.maven.org/maven2/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.pom
+Download https://repo1.maven.org/maven2/org/jboss/logging/jboss-logging/3.3.0.Final/jboss-logging-3.3.0.Final.pom
+Download https://repo1.maven.org/maven2/org/jboss/jboss-parent/15/jboss-parent-15.pom
+Download https://repo1.maven.org/maven2/com/fasterxml/classmate/1.1.0/classmate-1.1.0.pom
+Download https://repo1.maven.org/maven2/org/sonatype/oss/oss-parent/7/oss-parent-7.pom
+Download https://repo1.maven.org/maven2/aopalliance/aopalliance/1.0/aopalliance-1.0.pom
+Download https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.1.3/logback-core-1.1.3.pom
+Download https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.13/slf4j-api-1.7.13.pom
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-web/1.3.2.RELEASE/spring-boot-starter-web-1.3.2.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter/1.3.2.RELEASE/spring-boot-starter-1.3.2.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-tomcat/1.3.2.RELEASE/spring-boot-starter-tomcat-1.3.2.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-validation/1.3.2.RELEASE/spring-boot-starter-validation-1.3.2.RELEASE.jar
+Download https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.6.5/jackson-databind-2.6.5.jar
+Download https://repo1.maven.org/maven2/org/springframework/spring-web/4.2.4.RELEASE/spring-web-4.2.4.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/springframework/spring-webmvc/4.2.4.RELEASE/spring-webmvc-4.2.4.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot/1.3.2.RELEASE/spring-boot-1.3.2.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-autoconfigure/1.3.2.RELEASE/spring-boot-autoconfigure-1.3.2.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-starter-logging/1.3.2.RELEASE/spring-boot-starter-logging-1.3.2.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/yaml/snakeyaml/1.16/snakeyaml-1.16.jar
+Download https://repo1.maven.org/maven2/org/apache/tomcat/embed/tomcat-embed-core/8.0.30/tomcat-embed-core-8.0.30.jar
+Download https://repo1.maven.org/maven2/org/apache/tomcat/embed/tomcat-embed-el/8.0.30/tomcat-embed-el-8.0.30.jar
+Download https://repo1.maven.org/maven2/org/apache/tomcat/embed/tomcat-embed-logging-juli/8.0.30/tomcat-embed-logging-juli-8.0.30.jar
+Download https://repo1.maven.org/maven2/org/apache/tomcat/embed/tomcat-embed-websocket/8.0.30/tomcat-embed-websocket-8.0.30.jar
+Download https://repo1.maven.org/maven2/org/hibernate/hibernate-validator/5.2.2.Final/hibernate-validator-5.2.2.Final.jar
+Download https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.6.5/jackson-annotations-2.6.5.jar
+Download https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.6.5/jackson-core-2.6.5.jar
+Download https://repo1.maven.org/maven2/org/springframework/spring-aop/4.2.4.RELEASE/spring-aop-4.2.4.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/springframework/spring-beans/4.2.4.RELEASE/spring-beans-4.2.4.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/springframework/spring-context/4.2.4.RELEASE/spring-context-4.2.4.RELEASE.jar
+Download https://repo1.maven.org/maven2/org/springframework/spring-expression/4.2.4.RELEASE/spring-expression-4.2.4.RELEASE.jar
+Download https://repo1.maven.org/maven2/ch/qos/logback/logback-classic/1.1.3/logback-classic-1.1.3.jar
+Download https://repo1.maven.org/maven2/org/slf4j/jcl-over-slf4j/1.7.13/jcl-over-slf4j-1.7.13.jar
+Download https://repo1.maven.org/maven2/org/slf4j/jul-to-slf4j/1.7.13/jul-to-slf4j-1.7.13.jar
+Download https://repo1.maven.org/maven2/org/slf4j/log4j-over-slf4j/1.7.13/log4j-over-slf4j-1.7.13.jar
+Download https://repo1.maven.org/maven2/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar
+Download https://repo1.maven.org/maven2/org/jboss/logging/jboss-logging/3.3.0.Final/jboss-logging-3.3.0.Final.jar
+Download https://repo1.maven.org/maven2/com/fasterxml/classmate/1.1.0/classmate-1.1.0.jar
+Download https://repo1.maven.org/maven2/aopalliance/aopalliance/1.0/aopalliance-1.0.jar
+Download https://repo1.maven.org/maven2/ch/qos/logback/logback-core/1.1.3/logback-core-1.1.3.jar
+Download https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.13/slf4j-api-1.7.13.jar
 :processResources UP-TO-DATE
 :classes
 :findMainClass
@@ -436,7 +523,9 @@ Total time: 12.12 secs
 
 BUILD SUCCESSFUL
 
-Total time: 10.118 secs
+Total time: 18.515 secs
+
+This build could be faster, please consider using the Gradle Daemon: https://docs.gradle.org/2.10/userguide/gradle_daemon.html
 ```
 ##### Tell Linux to use the Java interpreter in the JDK 1.8 
     sudo /usr/sbin/alternatives --config java
