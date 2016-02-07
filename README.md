@@ -168,7 +168,7 @@ OpenJDK 64-Bit Server VM (build 24.91-b01, mixed mode)
 ```
 
 ##### Tell Linux to use the JDK 1.8 Java interpreter
-    sudo /usr/sbin/alternatives --config java
+    sudo alternatives --config java
 
 ##### Check the Java version
 *Should now be 1.8*  
